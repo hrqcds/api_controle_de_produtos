@@ -8,7 +8,7 @@ router.get('/baixar-produtos', (req, res) => {
     db.Produto.findAll().then(produtos => {
         if (produtos.length == 0) {
 
-            return res.send("Não há produtos cadastrados")
+            return res.send([])
 
         }
 
@@ -28,7 +28,7 @@ router.get('/baixar-produto/:id', (req, res) => {
 
         if (produto.length == 0) {
 
-            return res.send("Produto não encontrado")
+            return res.send([])
 
         }
 

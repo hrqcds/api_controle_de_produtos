@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     const Produto = sequelize.define("Produto",{
         codigo: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         descricao: {
             type: DataTypes.STRING,
@@ -16,10 +17,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         quantidade: {
             type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        ativo: {
-            type: DataTypes.BOOLEAN,
             allowNull: false
         },
         createdAt: {
