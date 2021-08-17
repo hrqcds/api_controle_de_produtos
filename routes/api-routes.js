@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 const db = require('../models')
 
+// Rotas de produto
 // Socilitando todos os produtos
 router.get('/baixar-produtos', (req, res) => {
     db.Produto.findAll().then(produtos => {
@@ -78,6 +79,33 @@ router.delete('/deletar-produto/:id', (req, res) => {
     }).then(() => {
         res.status(200)
         res.send("Deletado com sucesso")
+    })
+})
+
+// Rotas de usuario
+
+'buscando usuario'
+
+router.post('/usuarios/create', (req, res) => {
+    db.Usuario.create({
+        login: req.body.login,
+        password: req.body.password
+    }).then(usuarioCriado => {
+        res.status(200)
+        res.send(usuarioCriado)
+    })
+})
+
+router.post("/usuarios/login", (req, res) => {
+    db.Usuario.findAll({
+        where: {
+            login: req.body.login,
+            password: req.body.password
+        }
+    }).then(usuario => {
+        if(usuario.length > 0) return res.send(true)
+        
+        return res.send(false)
     })
 })
 
